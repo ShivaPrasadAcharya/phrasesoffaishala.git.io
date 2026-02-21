@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>नेपाली अदालती फैसला — शब्दावली सङ्ग्रह</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:             #0f0e0c;
+      --surface:        #1a1814;
+      --border:         #2e2b24;
+      --gold:           #c8a96e;
+      --gold-pale:      #e8d5a3;
+      --red-pale:       #e8a0a0;
+      --teal-pale:      #a0d4cc;
+      --muted:          #6b6558;
+      --text:           #e8e0d0;
+      --text-dim:       #a09880;
+      --hl-bg:          rgba(200,169,110,0.28);
+      --hl-active-bg:   #c8a96e;
+      --hl-active-text: #0f0e0c;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(200,169,110,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 110%, rgba(74,138,128,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .header-label {
+      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; opacity: .8;
+    }
+    header h1 {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 400; color: var(--gold-pale); line-height: 1.3; margin-bottom: .6rem;
+    }
+    header p.sub { color: var(--text-dim); font-size: .88rem; max-width: 560px; margin: 0 auto; }
+    .header-rule {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.2rem auto 0;
+    }
+
+    /* ══════════ SEARCH BAR ══════════ */
+    .search-wrapper {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(15,14,12,.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: .5rem 1rem .45rem;
+      display: flex; flex-direction: column; gap: .38rem;
+    }
+    .search-row {
+      display: flex; align-items: center; gap: .4rem; flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1; min-width: 150px;
+      background: var(--surface);
+      border: 1px solid var(--border); border-radius: 4px;
+      color: var(--text);
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: .88rem; padding: .38rem .7rem;
+      outline: none; transition: border-color .2s;
+    }
+    .search-box:focus { border-color: var(--gold); }
+    .search-box::placeholder { color: var(--muted); }
+
+    .search-count {
+      font-size: .76rem; color: var(--gold);
+      white-space: nowrap; min-width: 80px; text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .search-count.none { color: var(--red-pale); }
+    .search-count.empty { color: transparent; }
+
+    .ctrl-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--text-dim);
+      cursor: pointer; font-size: .82rem;
+      padding: .32rem .58rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: color .15s, border-color .15s;
+      user-select: none;
+    }
+    .ctrl-btn:hover:not(:disabled) { color: var(--gold-pale); border-color: var(--gold); }
+    .ctrl-btn:disabled { opacity: .28; cursor: default; }
+
+    /* nav */
+    .nav-links {
+      display: flex; flex-wrap: wrap; gap: .28rem .45rem;
+    }
+    .nav-links a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: .7rem; padding: .2rem .5rem;
+      border-radius: 3px; border: 1px solid transparent;
+      transition: all .15s; white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--gold-pale); border-color: var(--border); background: var(--surface);
+    }
+
+    /* ── HIGHLIGHTS ── */
+    mark.hl {
+      background: var(--hl-bg);
+      color: var(--gold-pale);
+      border-radius: 2px; padding: 0 1px;
+    }
+    mark.hl.active {
+      background: var(--hl-active-bg);
+      color: var(--hl-active-text);
+      border-radius: 2px;
+    }
+
+    /* ── NO-MATCH hide ── */
+    li.no-match { display: none !important; }
+    .section.fully-hidden { display: none !important; }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 980px; margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .part-title {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: .95rem; color: var(--muted);
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 1.5rem 0 .4rem; border-top: 1px solid var(--border);
+      margin-bottom: -.6rem;
+    }
+    .section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+      animation: fadeUp .35s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section-header {
+      display: flex; align-items: baseline; gap: .9rem;
+      padding: .95rem 1.5rem; border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .section-num   { font-size: .66rem; font-weight: 600; letter-spacing: .15em; color: var(--gold); opacity: .7; flex-shrink: 0; }
+    .section-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: .98rem; color: var(--gold-pale); font-weight: 400; }
+    .section-en    { font-size: .7rem; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+
+    .sub {
+      padding: .95rem 1.5rem;
+      border-bottom: 1px solid rgba(46,43,36,.55);
+    }
+    .sub:last-child { border-bottom: none; }
+    .sub-title {
+      font-size: .74rem; font-weight: 600; letter-spacing: .1em;
+      margin-bottom: .6rem; padding-bottom: .32rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sub-title.gold { color: var(--gold); }
+    .sub-title.red  { color: var(--red-pale); }
+    .sub-title.teal { color: var(--teal-pale); }
+    .sub-title.grey { color: var(--text-dim); }
+
+    ul.terms { list-style: none; display: flex; flex-direction: column; gap: .28rem; }
+    ul.terms li {
+      display: flex; align-items: baseline; gap: .5rem;
+      font-size: .87rem; color: var(--text); line-height: 1.6;
+    }
+    ul.terms li::before { content: '–'; color: var(--muted); flex-shrink: 0; font-size: .76rem; }
+    ul.terms li em { font-style: normal; color: var(--gold-pale); font-weight: 600; }
+    .grid2 ul.terms {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .28rem 1.4rem;
+    }
+
+    /* top btn */
+    #top-btn {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--gold); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .3s; z-index: 300;
+    }
+    #top-btn.show { opacity: 1; }
+
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .74rem;
+    }
+    @media (max-width: 600px) {
+      .section-en, .grid2 ul.terms { display: none; }
+      .grid2 ul.terms { display: flex; }
+      header h1 { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <p class="header-label">सन्दर्भ सामग्री</p>
+  <h1>नेपाली अदालती फैसलामा<br/>प्रयुक्त शब्दावली सङ्ग्रह</h1>
+  <p class="sub">निर्णयात्मक वाक्यांश, कानून व्याख्या, तर्क मूल्यांकन तथा वाक्य जोड्ने शब्दावलीको एकीकृत सन्दर्भ</p>
+  <div class="header-rule"></div>
+</header>
+
+<!-- ══════════════ SEARCH + NAV ══════════════ -->
+<div class="search-wrapper" role="search" aria-label="शब्दावली खोज">
+  <div class="search-row">
+    <input class="search-box" id="searchInput" type="search"
+           placeholder="खोज्नुहोस् … (श=स, व=ब, ण=न लगायत स्वतः मिलाइन्छ)"
+           autocomplete="off" spellcheck="false" aria-label="खोज"/>
+    <button class="ctrl-btn" id="prevBtn" title="अघिल्लो (Shift+Enter)" aria-label="अघिल्लो" disabled>&#8593;</button>
+    <button class="ctrl-btn" id="nextBtn" title="अर्को (Enter)"          aria-label="अर्को"     disabled>&#8595;</button>
+    <button class="ctrl-btn" id="clearBtn" title="खाली गर्नुहोस् (Esc)"  aria-label="खाली"      style="display:none">✕</button>
+    <span class="search-count empty" id="searchCount" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <nav class="nav-links" aria-label="खण्ड सूची">
+    <a href="#s1">निर्णयात्मक</a>
+    <a href="#s2">तथ्य/प्रमाण</a>
+    <a href="#s3">कानून व्याख्या</a>
+    <a href="#s4">अर्थ निर्धारण</a>
+    <a href="#s5">तर्क मूल्यांकन</a>
+    <a href="#s6">निर्णयतर्फ</a>
+    <a href="#s7">कारण/आधार</a>
+    <a href="#s8">निष्कर्ष</a>
+    <a href="#s9">विरोधाभास</a>
+    <a href="#s10">अनुक्रम</a>
+    <a href="#s11">थप/संयोजन</a>
+    <a href="#s12">सन्दर्भ</a>
+    <a href="#s13">शर्त/अवस्था</a>
+    <a href="#s14">तुलना</a>
+    <a href="#s15">विकल्प</a>
+    <a href="#s16">स्पष्टीकरण</a>
+    <a href="#s17">पूर्वसन्दर्भ</a>
+    <a href="#s18">अवलोकन</a>
+  </nav>
+</div>
+
+<!-- ══════════════ CONTENT ══════════════ -->
+<main id="mainContent">
+
+  <p class="part-title">भाग १ — निर्णयात्मक तथा मूल्यांकन शब्दावली</p>
+
+  <section class="section" id="s1">
+    <div class="section-header">
+      <span class="section-num">§ १</span>
+      <span class="section-title">निर्णयात्मक वाक्यांश</span>
+      <span class="section-en">Conclusive Phrases</span>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">स्वीकृति / समर्थन सूचक</p>
+      <ul class="terms">
+        <li>... उचित देखिन्छ ।</li>
+        <li>... न्यायोचित मानिन्छ ।</li>
+        <li>... न्याय सम्मत देखिन्छ ।</li>
+        <li>... युक्तियुक्त देखियो ।</li>
+        <li>... समीचीन देखिन आयो ।</li>
+        <li>... औचित्यपूर्ण देखियो ।</li>
+        <li>... उपयुक्त प्रतीत हुन्छ ।</li>
+        <li>... सान्दर्भिक मानिन्छ ।</li>
+        <li>... सुसंगत देखिन्छ ।</li>
+        <li>... कानूनसम्मत देखिन्छ ।</li>
+        <li>... संविधानसम्मत हुने देखियो ।</li>
+        <li>... मनासिब हुने देखिन्छ ।</li>
+        <li>... वाञ्छनीय देखिएको ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title red">अस्वीकृति / असहमति सूचक</p>
+      <ul class="terms">
+        <li>... मान्न सकिएन ।</li>
+        <li>... स्वीकार्य देखिएन ।</li>
+        <li>... तर्कसंगत भएन ।</li>
+        <li>... मनासिब ठहर्दैन ।</li>
+        <li>... औचित्यपूर्ण भएको पाइएन ।</li>
+        <li>... सहमत हुन सकिएन ।</li>
+        <li>... सान्दर्भिक रहेन ।</li>
+        <li>... कानूनसम्मत देखिएन ।</li>
+        <li>... जिकिरसँग सहमत भइएन ।</li>
+        <li>... उचित, वैध र स्वीकार्य देखिएन ।</li>
+        <li>... वाञ्छित देखिएन ।</li>
+        <li>... त्रुटिपूर्ण देखियो ।</li>
+        <li>... मिल्दैन ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title teal">फैसला / आदेश सूचक</p>
+      <ul class="terms">
+        <li>... ठहर्छ ।</li>
+        <li>... बदर हुने ठहर्छ ।</li>
+        <li>उत्प्रेषणको आदेशद्वारा बदर हुने ठहर्छ ।</li>
+        <li>उत्प्रेषणका आदेशले बदर गरिदिएको छ ।</li>
+        <li>... परमादेशको आदेश जारी हुने ठहर्छ ।</li>
+        <li>... जारी गरिरहन परेन ।</li>
+        <li>... उल्टी हुने ।</li>
+        <li>... सदर हुने ।</li>
+        <li>... खारेज हुने ठहर्छ ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s2">
+    <div class="section-header">
+      <span class="section-num">§ २</span>
+      <span class="section-title">तथ्य तथा प्रमाण मूल्यांकन</span>
+      <span class="section-en">Fact &amp; Evidence Evaluation</span>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">प्रमाण पुष्टि सूचक</p>
+      <ul class="terms">
+        <li>... प्रमाणित भएको पाइन्छ ।</li>
+        <li>... पुष्टि हुन आएको छ ।</li>
+        <li>... प्रस्ट देखिन्छ ।</li>
+        <li>... स्पष्ट हुन आयो ।</li>
+        <li>... खुलासा भएको छ ।</li>
+        <li>... देखिन आएको छ ।</li>
+        <li>... प्रतिपादन भएको छ ।</li>
+        <li>... देखिन्छ ।</li>
+        <li>... देखियो ।</li>
+        <li>... पाइयो ।</li>
+        <li>... रहेको देखिन्छ ।</li>
+        <li>... अवस्था रहेछ ।</li>
+        <li>... देखाइरहेको छ ।</li>
+        <li>... देखाएका पनि छन् ।</li>
+        <li>... पाइन्छ ।</li>
+        <li>... कुरामा विवाद देखिएन / विवाद छैन ।</li>
+        <li>... कुरा माथि उल्लेख भइसकेको छ ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title red">प्रमाण अपुष्टि सूचक</p>
+      <ul class="terms">
+        <li>... सिद्ध हुन सकेन ।</li>
+        <li>... प्रमाणित हुन सकेन ।</li>
+        <li>... पुष्टि हुन आएन ।</li>
+        <li>... देखिएन ।</li>
+        <li>... खुल्न आएको देखिँदैन ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s3">
+    <div class="section-header">
+      <span class="section-num">§ ३</span>
+      <span class="section-title">कानून व्याख्या सम्बन्धी</span>
+      <span class="section-en">Legal Interpretation</span>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">कानूनको सन्दर्भमा</p>
+      <ul class="terms">
+        <li>उक्त कानूनको रोहमा हेर्दा ...</li>
+        <li>यस कानूनको सानिध्यतामा हेर्दा ...</li>
+        <li>प्रचलित कानूनको मर्मअनुसार ...</li>
+        <li>कानूनको भावनालाई दृष्टिगत गर्दा ...</li>
+        <li>विद्यमान कानूनी व्यवस्थाअनुसार ...</li>
+        <li>उल्लिखित धाराको व्याख्या गर्दा ...</li>
+        <li>कानूनको उद्देश्यलाई ध्यानमा राख्दा ...</li>
+        <li>ऐनको प्रावधानअनुरूप ...</li>
+        <li>नियमावलीको परिधिमा रही ...</li>
+        <li>कानूनी मान्यताअनुसार ...</li>
+        <li>प्रचलित कानूनले ... दिएको देखिँदैन ।</li>
+        <li>... कानूनी व्याख्याको प्रश्न निहित रहेको ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title teal">न्यायिक सिद्धान्त सम्बन्धी</p>
+      <ul class="terms">
+        <li>स्थापित न्यायिक सिद्धान्तअनुसार ...</li>
+        <li>न्याय प्रशासनको मूल मर्मअनुसार ...</li>
+        <li>विधिको शासनको परिप्रेक्ष्यमा ...</li>
+        <li>न्यायको सर्वोच्चतालाई मध्यनजर गर्दा ...</li>
+        <li>प्राकृतिक न्यायको सिद्धान्तअनुसार ...</li>
+        <li>कानूनबमोजिम स्थापित निकायले कानूनबमोजिम प्राप्त अधिकार मात्र प्रयोग गर्नुपर्छ ।</li>
+        <li>कानूनले हेर्न छिन्न अधिकार दिएको निकायले गरेको निर्णय तथा काम कारबाहीले मात्र कानूनी मान्यता प्राप्त गर्न सक्छ ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">संवैधानिक व्याख्या सम्बन्धी</p>
+      <ul class="terms">
+        <li>... संवैधानिक विधिशास्त्र, संवैधानिक नैतिकता, संसदीय अभ्यास ... का दृष्टिले ...</li>
+        <li>... संविधानको शब्द, मर्म र भावनाअनुकूल हुने देखिन्छ ।</li>
+        <li>... संसदीय लोकतन्त्रका मान्यताहरूले ... अनुमति दिन्छन् वा दिँदैनन् ।</li>
+        <li>... संविधानले ... अलग राखेको छ ।</li>
+        <li>संविधानमा ... किटानीरूपमा उल्लेख गरिएको नभए पनि ... देखिँदैन ।</li>
+        <li>... अपवादस्वरूपको प्रावधानले ... प्रदान गरेको देखिँदैन ।</li>
+        <li>... पश्चात्‌दर्शी असर पुग्ने गरी व्याख्या गरेको हुन गई ...</li>
+        <li>... को मर्मविपरीत हुने देखिन्छ ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title red">क्षेत्राधिकार सम्बन्धी</p>
+      <ul class="terms">
+        <li>... क्षेत्राधिकारविहीन र कानूनप्रतिकूल देखिन आएको ।</li>
+        <li>... कानूनी रूपमा प्रभाव शून्य <em>(VOID)</em> हुन्छ ।</li>
+        <li>... स्वतः क्रियान्वित हुने भन्ने हुँदैन ।</li>
+        <li>... कायम रहन सक्दैन ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s4">
+    <div class="section-header">
+      <span class="section-num">§ ४</span>
+      <span class="section-title">व्याख्या र अर्थ निर्धारण</span>
+      <span class="section-en">Interpretation &amp; Meaning</span>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">सकारात्मक व्याख्या</p>
+      <ul class="terms">
+        <li>... भनी बुझ्नुपर्ने हुन्छ ।</li>
+        <li>... भनी अर्थ लगाउनुपर्छ ।</li>
+        <li>... भन्ने मनसाय रहेको देखिन्छ ।</li>
+        <li>... भनेर बुझ्नु उपयुक्त हुन्छ ।</li>
+        <li>... भन्ने आशय लिनुपर्ने हुन्छ ।</li>
+        <li>... भनी व्याख्या गर्नु समीचीन हुन्छ ।</li>
+        <li>... भनी बुझ्नुपर्ने हुन आयो ।</li>
+        <li>... सङ्केत गर्न खोजेको रहेछ भन्ने देखिन्छ ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title red">नकारात्मक व्याख्या</p>
+      <ul class="terms">
+        <li>... भनी अर्थ गर्न मिल्दैन ।</li>
+        <li>... भनेर बुझ्नु उचित हुँदैन ।</li>
+        <li>... भन्ने अर्थ लगाउन सकिँदैन ।</li>
+        <li>... भनी मान्न मिल्ने देखिएन ।</li>
+        <li>... भनेर व्याख्या गर्नु विधिसम्मत हुँदैन ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s5">
+    <div class="section-header">
+      <span class="section-num">§ ५</span>
+      <span class="section-title">तर्क मूल्यांकन</span>
+      <span class="section-en">Argument Evaluation</span>
+    </div>
+    <div class="sub">
+      <p class="sub-title gold">तर्क स्वीकृति</p>
+      <ul class="terms">
+        <li>... भन्ने तर्क मनासिब देखिन्छ ।</li>
+        <li>... भन्ने विद्वान् अधिवक्ताको तर्क स्वीकार्य छ ।</li>
+        <li>... भन्ने जिकिर युक्तियुक्त देखियो ।</li>
+        <li>... भन्ने कुरामा सहमत हुन सकिन्छ ।</li>
+        <li>... भन्ने दाबी पुष्टि हुन्छ ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title red">तर्क अस्वीकृति</p>
+      <ul class="terms">
+        <li>... भन्ने तर्क स्वभाविक मान्न मिलेन ।</li>
+        <li>... भन्ने विद्वान् कानून व्यवसायीको तर्कसँग सहमत हुन सकिएन ।</li>
+        <li>... भन्ने जिकिर स्वतः खण्डित भएको देखियो ।</li>
+        <li>... भन्ने दाबी आधारहीन देखियो ।</li>
+        <li>... भन्ने तर्कमा तथ्यगत आधार रहेन ।</li>
+        <li>... भन्ने कुरा ग्राह्य हुन सकेन ।</li>
+        <li>... भन्ने भनाइ कानूनसम्मत देखिएन ।</li>
+        <li>... अन्यथा भनी हाल्नुपर्ने अवस्था छैन ।</li>
+        <li>... शंका गरी हाल्न जरूरी देखिँदैन ।</li>
+      </ul>
+    </div>
+    <div class="sub">
+      <p class="sub-title grey">बहस / जिकिर उद्धरण</p>
+      <ul class="terms">
+        <li>... भन्ने जिकिर लिनुभएको छ ।</li>
+        <li>... भन्ने बेहोराको बहस प्रस्तुत गर्नुभयो ।</li>
+        <li>... भन्ने आदि तर्क पनि गर्नुभएको छ ।</li>
+        <li>... जिकिर लिएको पाइयो ।</li>
+        <li>... जिकिर पुग्न सक्ने हो होइन भन्ने प्रश्नमा निर्णय दिनुपर्ने देखिन आयो ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s6">
+    <div class="section-header">
+      <span class="section-num">§ ६</span>
+      <span class="section-title">निर्णयतर्फ प्रवेश सूचक</span>
+      <span class="section-en">Transition to Decision</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>निर्णयतर्फ विचार गर्दा ...</li>
+        <li>... प्रश्नमा निर्णय दिनुपर्ने देखिन आयो ।</li>
+        <li>... निरूपण गर्नुपर्ने देखिन आयो ।</li>
+        <li>... विचार गरी हेर्दा ...</li>
+        <li>उपर्युक्तानुसार दुवै पक्षबाट ... बहस जिकिर सुनी ... अध्ययन गरी ...</li>
+        <li>नियमबमोजिम पेसी सूचीमा चढी निर्णयार्थ ... पेस हुन आएको ...</li>
+        <li>... सो गर्दा ... प्रश्नहरू पनि उब्जिन्छन् ।</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="part-title">भाग २ — वाक्य जोड्ने तथा शृङ्खला मिलाउने शब्दावली</p>
+
+  <section class="section grid2" id="s7">
+    <div class="section-header">
+      <span class="section-num">§ ७</span>
+      <span class="section-title">कारण / आधार जनाउने</span>
+      <span class="section-en">Causal Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... हुँदा ...</li><li>... हुनाले ...</li>
+        <li>... भएकोले ...</li><li>... भएबाट ...</li>
+        <li>... देखिएकोले ...</li><li>... रहेकोले ...</li>
+        <li>... गरेकोले ...</li><li>... भएकाले ...</li>
+        <li>... को कारण ...</li><li>... को कारणबाट ...</li>
+        <li>... को परिणाम स्वरूप ...</li><li>... को आधारमा ...</li>
+        <li>... को रोहबाट ...</li><li>... समेतका आधारमा ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s8">
+    <div class="section-header">
+      <span class="section-num">§ ८</span>
+      <span class="section-title">निष्कर्ष / फलादेश जनाउने</span>
+      <span class="section-en">Conclusive Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>तसर्थ, ...</li><li>अतः ...</li>
+        <li>यसकारण ...</li><li>यस स्थितिमा ...</li>
+        <li>यस परिप्रेक्ष्यमा ...</li><li>यस सन्दर्भमा ...</li>
+        <li>यसबाट ...</li><li>यसबाट स्पष्ट हुन्छ कि ...</li>
+        <li>अन्ततः ...</li><li>यस हिसाबबाट हेर्दा ...</li>
+        <li>माथि विवेचित आधार र कारणसमेतबाट ...</li>
+        <li>उपर्युक्त विवेचनाबाट ...</li>
+        <li>यसरी हेर्दा ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s9">
+    <div class="section-header">
+      <span class="section-num">§ ९</span>
+      <span class="section-title">विरोधाभास / अपवाद जनाउने</span>
+      <span class="section-en">Adversative Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>तर ...</li><li>यद्यपि ... तापनि ...</li>
+        <li>तथापि ...</li><li>भए पनि ...</li>
+        <li>भए तापनि ...</li><li>अन्यथा ...</li>
+        <li>तर यहाँ प्रश्न ... होइन, प्रश्न ... हो ।</li>
+        <li>... भए पनि यो मूलतः ...</li>
+        <li>हो, ... तर ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s10">
+    <div class="section-header">
+      <span class="section-num">§ १०</span>
+      <span class="section-title">अनुक्रम / क्रम जनाउने</span>
+      <span class="section-en">Sequential Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>सर्वप्रथम, ...</li><li>प्रथमतः ...</li>
+        <li>तत्पश्चात् ...</li><li>त्यसपछि ...</li>
+        <li>सोही क्रममा ...</li><li>यसैक्रममा ...</li>
+        <li>अन्त्यमा ...</li><li>अब ...</li>
+        <li>अब ... तर्फ हेर्दा ...</li><li>यसै सन्दर्भमा ...</li>
+        <li>यसैगरी ...</li><li>साथै ...</li>
+        <li>त्यसैगरी ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s11">
+    <div class="section-header">
+      <span class="section-num">§ ११</span>
+      <span class="section-title">थप / संयोजन जनाउने</span>
+      <span class="section-en">Additive Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... का साथै ...</li><li>... समेत ...</li>
+        <li>... लगायत ...</li><li>... र ...</li>
+        <li>... तथा ...</li><li>... एवं ...</li>
+        <li>... पनि ...</li><li>... मात्र नभई ... पनि ...</li>
+        <li>... को अतिरिक्त ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s12">
+    <div class="section-header">
+      <span class="section-num">§ १२</span>
+      <span class="section-title">सन्दर्भ / विषय प्रवेश जनाउने</span>
+      <span class="section-en">Reference Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... तर्फ हेर्दा ...</li>
+        <li>... तर्फ विचार गर्दा ...</li>
+        <li>... सम्बन्धमा विचार गर्दा ...</li>
+        <li>... को सन्दर्भमा हेर्दा ...</li>
+        <li>... को प्रसङ्गमा ...</li>
+        <li>... विषयमा निर्णय दिनुपर्ने देखिन आयो ।</li>
+        <li>... को रोहमा हेर्दा ...</li>
+        <li>... मा प्रवेश गर्नुपूर्व ...</li>
+        <li>उपर्युक्त सन्दर्भमा ...</li>
+        <li>प्रस्तुत विवादमा ...</li>
+        <li>प्रस्तुत मुद्दामा ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s13">
+    <div class="section-header">
+      <span class="section-num">§ १३</span>
+      <span class="section-title">शर्त / अवस्था जनाउने</span>
+      <span class="section-en">Conditional Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... भएमा ...</li><li>... भएको अवस्थामा ...</li>
+        <li>... नभएमा ...</li><li>... हुन सक्ने अवस्था नभएमा ...</li>
+        <li>... सक्ने भए ...</li><li>... मा जानुपूर्व ...</li>
+        <li>... सम्म ...</li><li>... भएसम्म ...</li>
+        <li>... रहेसम्म ...</li><li>... गरेपछि मात्र ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s14">
+    <div class="section-header">
+      <span class="section-num">§ १४</span>
+      <span class="section-title">तुलना / समानान्तर जनाउने</span>
+      <span class="section-en">Comparative Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... जस्तै ...</li><li>... सरह ...</li>
+        <li>... अनुरूप ...</li><li>... बमोजिम ...</li>
+        <li>... अनुसार ...</li><li>... सँग मिल्दो ...</li>
+        <li>... को तुलनामा ...</li><li>करिब करिब त्यस्तै ...</li>
+        <li>... जत्तिकै ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s15">
+    <div class="section-header">
+      <span class="section-num">§ १५</span>
+      <span class="section-title">विकल्प जनाउने</span>
+      <span class="section-en">Alternative Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... वा ...</li>
+        <li>... होस् वा ... नै किन नहोस् ...</li>
+        <li>... हो वा होइन ...</li>
+        <li>... हुने हो वा नहुने ...</li>
+        <li>... मिल्छ वा मिल्दैन ...</li>
+        <li>... रहेछ वा रहेनछ ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="s16">
+    <div class="section-header">
+      <span class="section-num">§ १६</span>
+      <span class="section-title">स्पष्टीकरण / विस्तार जनाउने</span>
+      <span class="section-en">Elaborative Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>अर्थात् ...</li><li>अर्को शब्दमा ...</li>
+        <li>भनेको ...</li><li>अझ भनौं ...</li>
+        <li>विशेषतः ...</li><li>खासगरी ...</li>
+        <li>मुख्यतः ...</li><li>सङ्क्षेपमा भन्दा ...</li>
+        <li>उदाहरणको लागि ...</li>
+        <li>यसको स्वाभाविक अर्थ ... हुन जाने भएबाट ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s17">
+    <div class="section-header">
+      <span class="section-num">§ १७</span>
+      <span class="section-title">पूर्वसन्दर्भ / उल्लेख जनाउने</span>
+      <span class="section-en">Back-reference Connectors</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>माथि उल्लेख भएकै छ ।</li>
+        <li>माथि उल्लेख भइसकेको छ ।</li>
+        <li>माथि विवेचित ...</li><li>उल्लिखित ...</li>
+        <li>सोही ...</li><li>सोको आधारमा ...</li>
+        <li>सोही बमोजिम ...</li><li>उक्त ...</li>
+        <li>उक्त कुरालाई दृष्टिगत गरेर नै ...</li>
+        <li>यही कुरालाई ...</li>
+        <li>यही सन्दर्भमा ...</li><li>यसैकारण ...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section grid2" id="s18">
+    <div class="section-header">
+      <span class="section-num">§ १८</span>
+      <span class="section-title">न्यायिक निरीक्षण / अवलोकन जनाउने</span>
+      <span class="section-en">Observation Markers</span>
+    </div>
+    <div class="sub">
+      <ul class="terms">
+        <li>... देखिन्छ ।</li><li>... देखिन आयो ।</li>
+        <li>... पाइन्छ ।</li><li>... पाइयो ।</li>
+        <li>... प्रतीत हुन्छ ।</li><li>... रहेको छ ।</li>
+        <li>... भन्ने देखिन्छ ।</li><li>... भन्ने बुझिन्छ ।</li>
+        <li>... अनुमान गर्न सकिन्छ ।</li>
+        <li>... भनी मान्न सकिन्छ ।</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>नेपाली अदालती फैसला शब्दावली सङ्ग्रह &nbsp;·&nbsp; सम्पूर्ण अधिकार सुरक्षित</footer>
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="माथि">↑</button>
+
+<!-- ══════════════════════════════════════════════
+     ADVANCED SEARCH ENGINE
+══════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ────────────────────────────────────────────
+   Nepali Normalizer
+──────────────────────────────────────────── */
+const NepaliNormalizer = {
+  vowelMap:   { 'ी':'ि', 'ू':'ु' },
+  sibilantMap:{ 'श':'स', 'ष':'स' },
+  nasalMap:   { 'ङ':'न', 'ण':'न', 'ञ':'न', 'ं':'न्' },
+  vaBaMap:    { 'व':'ब' },
+
+  normalize(text) {
+    if (!text) return '';
+    let n = text.normalize('NFC').replace(/\u200D/g,'').replace(/\u200C/g,'');
+    for (const [f,t] of Object.entries(this.vowelMap))    n = n.split(f).join(t);
+    for (const [f,t] of Object.entries(this.sibilantMap)) n = n.split(f).join(t);
+    for (const [f,t] of Object.entries(this.nasalMap))    n = n.split(f).join(t);
+    for (const [f,t] of Object.entries(this.vaBaMap))     n = n.split(f).join(t);
+    return n;
+  },
+
+  isDevanagari(text) { return /[\u0900-\u097F]/.test(text); },
+
+  mapToOriginal(normPos, original, normalized) {
+    if (normPos <= 0) return 0;
+    if (normPos >= normalized.length) return original.length;
+    let origIdx = 0, normIdx = 0;
+    while (normIdx < normPos && origIdx < original.length) {
+      if (original[origIdx]==='\u200D' || original[origIdx]==='\u200C') { origIdx++; continue; }
+      origIdx++; normIdx++;
+    }
+    while (origIdx < original.length &&
+           (original[origIdx]==='\u200D' || original[origIdx]==='\u200C')) origIdx++;
+    return origIdx;
+  }
+};
+
+/* ────────────────────────────────────────────
+   DOM
+──────────────────────────────────────────── */
+const inputEl   = document.getElementById('searchInput');
+const prevBtn   = document.getElementById('prevBtn');
+const nextBtn   = document.getElementById('nextBtn');
+const clearBtn  = document.getElementById('clearBtn');
+const countEl   = document.getElementById('searchCount');
+const topBtn    = document.getElementById('top-btn');
+const mainEl    = document.getElementById('mainContent');
+
+/* ────────────────────────────────────────────
+   State
+──────────────────────────────────────────── */
+let marks   = [];   // all <mark.hl> elements in DOM order
+let current = -1;   // active index
+
+/* ────────────────────────────────────────────
+   Clear all highlights & restore original text
+──────────────────────────────────────────── */
+function clearAll() {
+  document.querySelectorAll('mark.hl').forEach(m => {
+    m.replaceWith(document.createTextNode(m.textContent));
+  });
+  // merge adjacent text nodes
+  mainEl.normalize();
+  marks   = [];
+  current = -1;
+
+  // restore all items & sections
+  document.querySelectorAll('ul.terms li').forEach(li => li.classList.remove('no-match'));
+  document.querySelectorAll('.section').forEach(s  => s.classList.remove('fully-hidden'));
+}
+
+/* ────────────────────────────────────────────
+   Highlight one Text node; returns count
+──────────────────────────────────────────── */
+function highlightNode(textNode, normQ) {
+  const orig   = textNode.nodeValue;
+  const normOrig = NepaliNormalizer.normalize(orig).toLowerCase();
+
+  // find all positions
+  const hits = [];
+  let pos = 0;
+  while (true) {
+    const idx = normOrig.indexOf(normQ, pos);
+    if (idx === -1) break;
+    hits.push(idx);
+    pos = idx + normQ.length;
+  }
+  if (!hits.length) return 0;
+
+  const frag = document.createDocumentFragment();
+  let lastOrig = 0;
+
+  for (const normStart of hits) {
+    const normEnd  = normStart + normQ.length;
+    const origStart = NepaliNormalizer.mapToOriginal(normStart, orig, normOrig);
+    const origEnd   = NepaliNormalizer.mapToOriginal(normEnd,   orig, normOrig);
+
+    if (origStart > lastOrig)
+      frag.appendChild(document.createTextNode(orig.slice(lastOrig, origStart)));
+
+    const m = document.createElement('mark');
+    m.className  = 'hl';
+    m.textContent = orig.slice(origStart, origEnd);
+    frag.appendChild(m);
+    marks.push(m);
+    lastOrig = origEnd;
+  }
+  if (lastOrig < orig.length)
+    frag.appendChild(document.createTextNode(orig.slice(lastOrig)));
+
+  textNode.parentNode.replaceChild(frag, textNode);
+  return hits.length;
+}
+
+/* ────────────────────────────────────────────
+   Collect all leaf text nodes inside el,
+   skipping <mark>, <script>, <style>
+──────────────────────────────────────────── */
+function textNodes(el) {
+  const result = [];
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode(n) {
+      const p = n.parentNode.nodeName;
+      if (p==='MARK'||p==='SCRIPT'||p==='STYLE') return NodeFilter.FILTER_REJECT;
+      return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    }
+  });
+  let n;
+  while ((n = walker.nextNode())) result.push(n);
+  return result;
+}
+
+/* ────────────────────────────────────────────
+   Main search
+──────────────────────────────────────────── */
+function runSearch(query) {
+  clearAll();
+
+  const q = query.trim();
+  clearBtn.style.display = q ? '' : 'none';
+
+  if (!q) { updateUI(); return; }
+
+  const normQ = NepaliNormalizer.normalize(q).toLowerCase();
+
+  // ── per-<li> show/hide ──
+  document.querySelectorAll('ul.terms li').forEach(li => {
+    const normText = NepaliNormalizer.normalize(li.textContent).toLowerCase();
+    if (!normText.includes(normQ)) li.classList.add('no-match');
+  });
+
+  // ── highlight (walk text nodes of entire main) ──
+  // We must snapshot nodes before we insert <mark> elements
+  const nodes = textNodes(mainEl);
+  nodes.forEach(n => highlightNode(n, normQ));
+
+  // ── hide sections where every <li> is hidden ──
+  document.querySelectorAll('.section').forEach(sec => {
+    const lis = sec.querySelectorAll('ul.terms li');
+    if (!lis.length) return;
+    if ([...lis].every(li => li.classList.contains('no-match')))
+      sec.classList.add('fully-hidden');
+  });
+
+  // activate first match
+  if (marks.length) { current = 0; activateMark(0, false); }
+  updateUI();
+}
+
+/* ────────────────────────────────────────────
+   Navigation
+──────────────────────────────────────────── */
+function activateMark(idx, smooth=true) {
+  if (!marks.length) return;
+  marks[current]?.classList.remove('active');
+  current = (idx + marks.length) % marks.length;
+  marks[current].classList.add('active');
+  marks[current].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+  updateUI();
+}
+
+function goNext() { if (marks.length) activateMark(current + 1); }
+function goPrev() { if (marks.length) activateMark(current - 1); }
+
+/* ────────────────────────────────────────────
+   UI labels
+──────────────────────────────────────────── */
+function updateUI() {
+  const total = marks.length;
+  const hasQ  = inputEl.value.trim().length > 0;
+
+  prevBtn.disabled = !total;
+  nextBtn.disabled = !total;
+
+  if (!hasQ) {
+    countEl.textContent = '';
+    countEl.className   = 'search-count empty';
+    return;
+  }
+  if (!total) {
+    countEl.textContent = 'फेला परेन';
+    countEl.className   = 'search-count none';
+    return;
+  }
+  countEl.textContent = `${current + 1} / ${total}`;
+  countEl.className   = 'search-count';
+}
+
+/* ────────────────────────────────────────────
+   Events
+──────────────────────────────────────────── */
+let debounce;
+inputEl.addEventListener('input', () => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => runSearch(inputEl.value), 150);
+});
+
+inputEl.addEventListener('keydown', e => {
+  if (e.key === 'Enter')  { e.preventDefault(); e.shiftKey ? goPrev() : goNext(); }
+  if (e.key === 'Escape') { inputEl.value = ''; runSearch(''); inputEl.blur(); }
+});
+
+prevBtn .addEventListener('click', goPrev);
+nextBtn .addEventListener('click', goNext);
+clearBtn.addEventListener('click', () => { inputEl.value=''; runSearch(''); inputEl.focus(); });
+
+/* scroll-to-top */
+window.addEventListener('scroll', () => topBtn.classList.toggle('show', scrollY > 400));
+</script>
+</body>
+</html>
