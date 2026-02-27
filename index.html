@@ -4,277 +4,485 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>नेपाली अदालती फैसला — शब्दावली सङ्ग्रह</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --bg:             #0f0e0c;
-      --surface:        #1a1814;
-      --border:         #2e2b24;
-      --gold:           #c8a96e;
-      --gold-pale:      #e8d5a3;
-      --red-pale:       #e8a0a0;
-      --teal-pale:      #a0d4cc;
-      --muted:          #6b6558;
-      --text:           #e8e0d0;
-      --text-dim:       #a09880;
-      --hl-bg:          rgba(200,169,110,0.28);
-      --hl-active-bg:   #c8a96e;
-      --hl-active-text: #0f0e0c;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-weight: 300;
-      line-height: 1.75;
-      min-height: 100vh;
-    }
+/* ══════════════════════════════════════════════
+   TOKENS — Dark (default)
+══════════════════════════════════════════════ */
+:root {
+  --bg:          #111009;
+  --bg2:         #17150f;
+  --surface:     #1e1b13;
+  --surface2:    #262218;
+  --border:      #332f24;
+  --border-soft: rgba(60,55,40,.45);
 
-    /* ── HEADER ── */
-    header {
-      position: relative;
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    header::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -20%, rgba(200,169,110,.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 10% 110%, rgba(74,138,128,.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .header-label {
-      font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem; opacity: .8;
-    }
-    header h1 {
-      font-family: 'Tiro Devanagari Hindi', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      font-weight: 400; color: var(--gold-pale); line-height: 1.3; margin-bottom: .6rem;
-    }
-    header p.sub { color: var(--text-dim); font-size: .88rem; max-width: 560px; margin: 0 auto; }
-    .header-rule {
-      width: 60px; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 1.2rem auto 0;
-    }
+  --gold:        #c9aa70;
+  --gold-dim:    #a8883f;
+  --gold-pale:   #ead8a8;
+  --gold-faint:  rgba(201,170,112,.08);
 
-    /* ══════════ SEARCH BAR ══════════ */
-    .search-wrapper {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(15,14,12,.97);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      padding: .5rem 1rem .45rem;
-      display: flex; flex-direction: column; gap: .38rem;
-    }
-    .search-row {
-      display: flex; align-items: center; gap: .4rem; flex-wrap: wrap;
-    }
-    .search-box {
-      flex: 1; min-width: 150px;
-      background: var(--surface);
-      border: 1px solid var(--border); border-radius: 4px;
-      color: var(--text);
-      font-family: 'Noto Sans Devanagari', sans-serif;
-      font-size: .88rem; padding: .38rem .7rem;
-      outline: none; transition: border-color .2s;
-    }
-    .search-box:focus { border-color: var(--gold); }
-    .search-box::placeholder { color: var(--muted); }
+  --red:         #c97070;
+  --teal:        #70b8b0;
+  --muted:       #6e6555;
+  --text:        #e4dccb;
+  --text-2:      #b8ae99;
+  --text-3:      #7a7060;
 
-    .search-count {
-      font-size: .76rem; color: var(--gold);
-      white-space: nowrap; min-width: 80px; text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-    .search-count.none { color: var(--red-pale); }
-    .search-count.empty { color: transparent; }
+  --hl:          rgba(201,170,112,.22);
+  --hl-active:   #c9aa70;
+  --hl-text:     #111009;
 
-    .ctrl-btn {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 4px; color: var(--text-dim);
-      cursor: pointer; font-size: .82rem;
-      padding: .32rem .58rem; line-height: 1;
-      display: flex; align-items: center; justify-content: center;
-      transition: color .15s, border-color .15s;
-      user-select: none;
-    }
-    .ctrl-btn:hover:not(:disabled) { color: var(--gold-pale); border-color: var(--gold); }
-    .ctrl-btn:disabled { opacity: .28; cursor: default; }
+  --glass:       rgba(17,16,9,.96);
+  --radius:      8px;
+  --radius-sm:   5px;
+}
 
-    /* nav */
-    .nav-links {
-      display: flex; flex-wrap: wrap; gap: .28rem .45rem;
-    }
-    .nav-links a {
-      color: var(--text-dim); text-decoration: none;
-      font-size: .7rem; padding: .2rem .5rem;
-      border-radius: 3px; border: 1px solid transparent;
-      transition: all .15s; white-space: nowrap;
-    }
-    .nav-links a:hover {
-      color: var(--gold-pale); border-color: var(--border); background: var(--surface);
-    }
+/* ══════════════════════════════════════════════
+   TOKENS — Light
+══════════════════════════════════════════════ */
+html.light {
+  --bg:          #f7f4ee;
+  --bg2:         #f0ece3;
+  --surface:     #ffffff;
+  --surface2:    #f7f4ee;
+  --border:      #ddd6c6;
+  --border-soft: rgba(180,168,144,.4);
 
-    /* ── HIGHLIGHTS ── */
-    mark.hl {
-      background: var(--hl-bg);
-      color: var(--gold-pale);
-      border-radius: 2px; padding: 0 1px;
-    }
-    mark.hl.active {
-      background: var(--hl-active-bg);
-      color: var(--hl-active-text);
-      border-radius: 2px;
-    }
+  --gold:        #7a5c1e;
+  --gold-dim:    #9a7530;
+  --gold-pale:   #5a4010;
+  --gold-faint:  rgba(122,92,30,.06);
 
-    /* ── NO-MATCH hide ── */
-    li.no-match { display: none !important; }
-    .section.fully-hidden { display: none !important; }
+  --red:         #8b2020;
+  --teal:        #1a6b62;
+  --muted:       #9a8e7a;
+  --text:        #27200f;
+  --text-2:      #5a5040;
+  --text-3:      #9a8e7a;
 
-    /* ── LAYOUT ── */
-    main {
-      max-width: 980px; margin: 0 auto;
-      padding: 2.5rem 1.5rem 6rem;
-      display: flex; flex-direction: column; gap: 2rem;
-    }
-    .part-title {
-      font-family: 'Tiro Devanagari Hindi', serif;
-      font-size: .95rem; color: var(--muted);
-      letter-spacing: .08em; text-transform: uppercase;
-      padding: 1.5rem 0 .4rem; border-top: 1px solid var(--border);
-      margin-bottom: -.6rem;
-    }
-    .section {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; overflow: hidden;
-      animation: fadeUp .35s ease both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .section-header {
-      display: flex; align-items: baseline; gap: .9rem;
-      padding: .95rem 1.5rem; border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-    }
-    .section-num   { font-size: .66rem; font-weight: 600; letter-spacing: .15em; color: var(--gold); opacity: .7; flex-shrink: 0; }
-    .section-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: .98rem; color: var(--gold-pale); font-weight: 400; }
-    .section-en    { font-size: .7rem; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+  --hl:          rgba(122,92,30,.15);
+  --hl-active:   #7a5c1e;
+  --hl-text:     #ffffff;
 
-    .sub {
-      padding: .95rem 1.5rem;
-      border-bottom: 1px solid rgba(46,43,36,.55);
-    }
-    .sub:last-child { border-bottom: none; }
-    .sub-title {
-      font-size: .74rem; font-weight: 600; letter-spacing: .1em;
-      margin-bottom: .6rem; padding-bottom: .32rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .sub-title.gold { color: var(--gold); }
-    .sub-title.red  { color: var(--red-pale); }
-    .sub-title.teal { color: var(--teal-pale); }
-    .sub-title.grey { color: var(--text-dim); }
+  --glass:       rgba(247,244,238,.97);
+}
 
-    ul.terms { list-style: none; display: flex; flex-direction: column; gap: .28rem; }
-    ul.terms li {
-      display: flex; align-items: baseline; gap: .5rem;
-      font-size: .87rem; color: var(--text); line-height: 1.6;
-    }
-    ul.terms li::before { content: '–'; color: var(--muted); flex-shrink: 0; font-size: .76rem; }
-    ul.terms li em { font-style: normal; color: var(--gold-pale); font-weight: 600; }
-    .grid2 ul.terms {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: .28rem 1.4rem;
-    }
+/* ══════════════════════════════════════════════
+   BASE
+══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-    /* top btn */
-    #top-btn {
-      position: fixed; bottom: 2rem; right: 2rem;
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--gold); font-size: 1rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .3s; z-index: 300;
-    }
-    #top-btn.show { opacity: 1; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.8;
+  min-height: 100vh;
+  transition: background .3s, color .3s;
+}
 
-    footer {
-      text-align: center; padding: 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted); font-size: .74rem;
-    }
-    @media (max-width: 600px) {
-      .section-en, .grid2 ul.terms { display: none; }
-      .grid2 ul.terms { display: flex; }
-      header h1 { font-size: 1.45rem; }
-    }
-  </style>
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+header {
+  position: relative;
+  padding: 4rem 2rem 3.2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg2);
+  transition: background .3s, border-color .3s;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% -10%, rgba(201,170,112,.13) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 35% at 5% 105%,  rgba(112,184,176,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header-eyebrow {
+  font-size: .68rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); opacity: .75; margin-bottom: 1rem;
+}
+header h1 {
+  font-family: 'Tiro Devanagari Hindi', serif;
+  font-size: clamp(1.7rem, 3.8vw, 2.8rem);
+  font-weight: 400; color: var(--gold-pale);
+  line-height: 1.25; margin-bottom: .75rem;
+  transition: color .3s;
+}
+header .subtitle {
+  color: var(--text-2); font-size: .9rem;
+  max-width: 580px; margin: 0 auto; line-height: 1.7;
+  transition: color .3s;
+}
+.header-rule {
+  width: 48px; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.4rem auto 0;
+}
+
+/* ══════════════════════════════════════════════
+   STICKY RIBBON  (search + nav + theme toggle)
+══════════════════════════════════════════════ */
+.ribbon {
+  position: sticky; top: 0; z-index: 300;
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s, border-color .3s;
+}
+
+/* ── top strip: search + controls + theme ── */
+.ribbon-search {
+  display: flex; align-items: center; gap: .45rem;
+  padding: .55rem 1rem .5rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* search icon + input wrapper */
+.search-field {
+  flex: 1; display: flex; align-items: center; gap: .5rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .38rem .7rem;
+  transition: border-color .2s, background .3s;
+}
+.search-field:focus-within { border-color: var(--gold); }
+.search-icon { color: var(--muted); font-size: .9rem; flex-shrink: 0; line-height: 1; }
+.search-box {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: var(--text);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: .88rem;
+  transition: color .3s;
+}
+.search-box::placeholder { color: var(--text-3); }
+
+/* count badge */
+.search-count {
+  font-size: .72rem; color: var(--gold);
+  white-space: nowrap; min-width: 62px; text-align: center;
+  font-variant-numeric: tabular-nums;
+  background: var(--gold-faint);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: .18rem .55rem;
+  transition: all .2s;
+}
+.search-count.none  { color: var(--red); border-color: rgba(201,112,112,.3); background: rgba(201,112,112,.06); }
+.search-count.empty { opacity: 0; pointer-events: none; }
+
+/* icon buttons */
+.icon-btn {
+  width: 32px; height: 32px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; line-height: 1;
+  transition: color .15s, border-color .15s, background .3s;
+  flex-shrink: 0; user-select: none;
+}
+.icon-btn:hover:not(:disabled) { color: var(--gold-pale); border-color: var(--gold); }
+.icon-btn:disabled { opacity: .25; cursor: default; }
+.icon-btn.clear-btn { display: none; }
+
+/* divider */
+.ribbon-divider {
+  width: 1px; height: 22px;
+  background: var(--border); flex-shrink: 0;
+}
+
+/* ── THEME TOGGLE inside ribbon ── */
+.theme-btn {
+  display: flex; align-items: center; gap: .3rem;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: .25rem .65rem;
+  cursor: pointer; font-size: .72rem;
+  color: var(--text-2);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  white-space: nowrap; flex-shrink: 0;
+  transition: color .15s, border-color .15s, background .3s;
+  user-select: none;
+}
+.theme-btn:hover { color: var(--gold); border-color: var(--gold); }
+.theme-btn .t-icon { font-size: .88rem; line-height: 1; }
+.theme-btn .t-label { font-size: .7rem; }
+
+/* ── bottom strip: nav links ── */
+.ribbon-nav {
+  display: flex; flex-wrap: wrap; gap: .22rem .35rem;
+  padding: .4rem 1rem;
+}
+.ribbon-nav a {
+  color: var(--text-3); text-decoration: none;
+  font-size: .69rem; padding: .18rem .48rem;
+  border-radius: 3px; border: 1px solid transparent;
+  transition: all .15s; white-space: nowrap;
+  line-height: 1.5;
+}
+.ribbon-nav a:hover {
+  color: var(--gold-pale); border-color: var(--border); background: var(--surface);
+}
+
+/* ══════════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════════ */
+main {
+  max-width: 1020px; margin: 0 auto;
+  padding: 2.8rem 1.6rem 7rem;
+  display: flex; flex-direction: column; gap: 2.2rem;
+}
+
+/* part heading */
+.part-heading {
+  display: flex; align-items: center; gap: 1rem;
+  padding-top: 1.2rem;
+  margin-bottom: -.8rem;
+}
+.part-heading::before, .part-heading::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+  transition: background .3s;
+}
+.part-heading span {
+  font-family: 'Tiro Devanagari Hindi', serif;
+  font-size: .78rem; color: var(--muted); letter-spacing: .12em;
+  text-transform: uppercase; white-space: nowrap;
+  transition: color .3s;
+}
+
+/* ── SECTION CARD ── */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: background .3s, border-color .3s;
+  animation: rise .3s ease both;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.section.fully-hidden { display: none !important; }
+
+/* section header band */
+.sec-head {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .9rem 1.4rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s, border-color .3s;
+}
+.sec-num {
+  font-size: .6rem; font-weight: 700; letter-spacing: .18em;
+  color: var(--gold-dim); flex-shrink: 0;
+  background: var(--gold-faint);
+  border: 1px solid rgba(201,170,112,.2);
+  border-radius: 3px; padding: .1rem .35rem;
+  transition: all .3s;
+}
+.sec-title {
+  font-family: 'Tiro Devanagari Hindi', serif;
+  font-size: 1rem; color: var(--gold-pale); font-weight: 400;
+  line-height: 1.3; transition: color .3s;
+}
+.sec-en {
+  margin-left: auto; flex-shrink: 0;
+  font-size: .68rem; color: var(--text-3);
+  letter-spacing: .03em; transition: color .3s;
+}
+
+/* ── SUB-SECTION ── */
+.sub {
+  padding: 1.1rem 1.4rem 1rem;
+  border-bottom: 1px solid var(--border-soft);
+  transition: border-color .3s;
+}
+.sub:last-child { border-bottom: none; }
+
+.sub-label {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .8rem; padding-bottom: .45rem;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  transition: border-color .3s;
+}
+.sub-label .dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+}
+.sub-label.gold { color: var(--gold); }
+.sub-label.gold .dot { background: var(--gold); }
+.sub-label.red  { color: var(--red); }
+.sub-label.red  .dot { background: var(--red); }
+.sub-label.teal { color: var(--teal); }
+.sub-label.teal .dot { background: var(--teal); }
+.sub-label.grey { color: var(--text-3); }
+.sub-label.grey .dot { background: var(--text-3); }
+
+/* ── TERM LIST ── */
+ul.terms {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0;
+}
+ul.terms li {
+  display: flex; align-items: baseline; gap: .6rem;
+  font-size: .9rem; color: var(--text);
+  line-height: 1.75;
+  padding: .32rem .1rem;
+  border-bottom: 1px solid var(--border-soft);
+  transition: background .15s, color .3s, border-color .3s;
+}
+ul.terms li:last-child { border-bottom: none; }
+ul.terms li:hover { background: var(--gold-faint); }
+ul.terms li::before {
+  content: '–'; color: var(--text-3); flex-shrink: 0;
+  font-size: .8rem; margin-top: .02em;
+  transition: color .3s;
+}
+ul.terms li em { font-style: normal; color: var(--gold); font-weight: 500; }
+ul.terms li.no-match { display: none !important; }
+
+/* grid variant */
+.grid2 ul.terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0 1.6rem;
+}
+.grid2 ul.terms li { border-bottom: 1px solid var(--border-soft); }
+
+/* ── HIGHLIGHTS ── */
+mark.hl {
+  background: var(--hl); color: inherit;
+  border-radius: 2px; padding: 0 1px;
+}
+mark.hl.active {
+  background: var(--hl-active);
+  color: var(--hl-text);
+}
+
+/* ── SCROLL TO TOP ── */
+#top-btn {
+  position: fixed; bottom: 1.8rem; right: 1.8rem;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--surface); border: 1.5px solid var(--border);
+  color: var(--gold); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .3s, transform .3s, background .3s, border-color .3s;
+  z-index: 400; box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+#top-btn.show { opacity: 1; transform: translateY(0); }
+#top-btn:hover { border-color: var(--gold); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 2.2rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-3); font-size: .74rem;
+  transition: border-color .3s, color .3s;
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  header h1       { font-size: 1.55rem; }
+  header .subtitle{ font-size: .82rem; }
+  .sec-en         { display: none; }
+  .grid2 ul.terms { grid-template-columns: 1fr; }
+  .t-label        { display: none; }
+}
+</style>
 </head>
 <body>
 
+<!-- ══════════ HEADER ══════════ -->
 <header>
-  <p class="header-label">सन्दर्भ सामग्री</p>
+  <p class="header-eyebrow">सन्दर्भ सामग्री</p>
   <h1>नेपाली अदालती फैसलामा<br/>प्रयुक्त शब्दावली सङ्ग्रह</h1>
-  <p class="sub">निर्णयात्मक वाक्यांश, कानून व्याख्या, तर्क मूल्यांकन तथा वाक्य जोड्ने शब्दावलीको एकीकृत सन्दर्भ</p>
+  <p class="subtitle">निर्णयात्मक वाक्यांश, कानून व्याख्या, तर्क मूल्यांकन<br/>तथा वाक्य जोड्ने शब्दावलीको एकीकृत सन्दर्भ</p>
   <div class="header-rule"></div>
 </header>
 
-<!-- ══════════════ SEARCH + NAV ══════════════ -->
-<div class="search-wrapper" role="search" aria-label="शब्दावली खोज">
-  <div class="search-row">
-    <input class="search-box" id="searchInput" type="search"
-           placeholder="खोज्नुहोस् … (श=स, व=ब, ण=न लगायत स्वतः मिलाइन्छ)"
-           autocomplete="off" spellcheck="false" aria-label="खोज"/>
-    <button class="ctrl-btn" id="prevBtn" title="अघिल्लो (Shift+Enter)" aria-label="अघिल्लो" disabled>&#8593;</button>
-    <button class="ctrl-btn" id="nextBtn" title="अर्को (Enter)"          aria-label="अर्को"     disabled>&#8595;</button>
-    <button class="ctrl-btn" id="clearBtn" title="खाली गर्नुहोस् (Esc)"  aria-label="खाली"      style="display:none">✕</button>
-    <span class="search-count empty" id="searchCount" aria-live="polite" aria-atomic="true"></span>
+<!-- ══════════ RIBBON ══════════ -->
+<div class="ribbon" role="search" aria-label="खोज र नेभिगेसन">
+
+  <!-- search row -->
+  <div class="ribbon-search">
+    <!-- search field -->
+    <div class="search-field">
+      <span class="search-icon">🔍</span>
+      <input class="search-box" id="searchInput" type="search"
+             placeholder="खोज्नुहोस् … (श/ष=स, व=ब, ण/ञ/ङ=न स्वतः मिलाइन्छ)"
+             autocomplete="off" spellcheck="false" aria-label="शब्दावली खोज"/>
+    </div>
+
+    <!-- nav controls -->
+    <button class="icon-btn" id="prevBtn" title="अघिल्लो (Shift+Enter)" disabled>↑</button>
+    <button class="icon-btn" id="nextBtn" title="अर्को (Enter)"          disabled>↓</button>
+    <button class="icon-btn clear-btn" id="clearBtn" title="खाली गर्नुहोस् (Esc)">✕</button>
+    <span class="search-count empty" id="searchCount" aria-live="polite"></span>
+
+    <div class="ribbon-divider"></div>
+
+    <!-- theme toggle -->
+    <button class="theme-btn" id="themeBtn" aria-label="थिम बदल्नुहोस्">
+      <span class="t-icon" id="tIcon">🌙</span>
+      <span class="t-label" id="tLabel">उज्यालो</span>
+    </button>
   </div>
-  <nav class="nav-links" aria-label="खण्ड सूची">
-    <a href="#s1">निर्णयात्मक</a>
-    <a href="#s2">तथ्य/प्रमाण</a>
-    <a href="#s3">कानून व्याख्या</a>
-    <a href="#s4">अर्थ निर्धारण</a>
-    <a href="#s5">तर्क मूल्यांकन</a>
-    <a href="#s6">निर्णयतर्फ</a>
-    <a href="#s7">कारण/आधार</a>
-    <a href="#s8">निष्कर्ष</a>
-    <a href="#s9">विरोधाभास</a>
-    <a href="#s10">अनुक्रम</a>
-    <a href="#s11">थप/संयोजन</a>
-    <a href="#s12">सन्दर्भ</a>
-    <a href="#s13">शर्त/अवस्था</a>
-    <a href="#s14">तुलना</a>
-    <a href="#s15">विकल्प</a>
-    <a href="#s16">स्पष्टीकरण</a>
-    <a href="#s17">पूर्वसन्दर्भ</a>
-    <a href="#s18">अवलोकन</a>
+
+  <!-- nav links -->
+  <nav class="ribbon-nav" aria-label="खण्डमा जानुहोस्">
+    <a href="#s1">§१ निर्णयात्मक</a>
+    <a href="#s2">§२ तथ्य/प्रमाण</a>
+    <a href="#s3">§३ कानून व्याख्या</a>
+    <a href="#s4">§४ अर्थ निर्धारण</a>
+    <a href="#s5">§५ तर्क मूल्यांकन</a>
+    <a href="#s6">§६ निर्णयतर्फ</a>
+    <a href="#s7">§७ कारण/आधार</a>
+    <a href="#s8">§८ निष्कर्ष</a>
+    <a href="#s9">§९ विरोधाभास</a>
+    <a href="#s10">§१० अनुक्रम</a>
+    <a href="#s11">§११ थप/संयोजन</a>
+    <a href="#s12">§१२ सन्दर्भ</a>
+    <a href="#s13">§१३ शर्त/अवस्था</a>
+    <a href="#s14">§१४ तुलना</a>
+    <a href="#s15">§१५ विकल्प</a>
+    <a href="#s16">§१६ स्पष्टीकरण</a>
+    <a href="#s17">§१७ पूर्वसन्दर्भ</a>
+    <a href="#s18">§१८ अवलोकन</a>
   </nav>
 </div>
 
-<!-- ══════════════ CONTENT ══════════════ -->
+<!-- ══════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════ -->
 <main id="mainContent">
 
-  <p class="part-title">भाग १ — निर्णयात्मक तथा मूल्यांकन शब्दावली</p>
+  <div class="part-heading"><span>भाग १ — निर्णयात्मक तथा मूल्यांकन शब्दावली</span></div>
 
+  <!-- § 1 -->
   <section class="section" id="s1">
-    <div class="section-header">
-      <span class="section-num">§ १</span>
-      <span class="section-title">निर्णयात्मक वाक्यांश</span>
-      <span class="section-en">Conclusive Phrases</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १</span>
+      <span class="sec-title">निर्णयात्मक वाक्यांश</span>
+      <span class="sec-en">Conclusive Phrases</span>
     </div>
     <div class="sub">
-      <p class="sub-title gold">स्वीकृति / समर्थन सूचक</p>
+      <p class="sub-label gold"><span class="dot"></span>स्वीकृति / समर्थन सूचक</p>
       <ul class="terms">
         <li>... उचित देखिन्छ ।</li>
         <li>... न्यायोचित मानिन्छ ।</li>
@@ -289,11 +497,10 @@
         <li>... संविधानसम्मत हुने देखियो ।</li>
         <li>... मनासिब हुने देखिन्छ ।</li>
         <li>... वाञ्छनीय देखिएको ।</li>
-        <li>... वाञ्छनीय देखिन आयो ।</li>
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title red">अस्वीकृति / असहमति सूचक</p>
+      <p class="sub-label red"><span class="dot"></span>अस्वीकृति / असहमति सूचक</p>
       <ul class="terms">
         <li>... मान्न सकिएन ।</li>
         <li>... स्वीकार्य देखिएन ।</li>
@@ -311,7 +518,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title teal">फैसला / आदेश सूचक</p>
+      <p class="sub-label teal"><span class="dot"></span>फैसला / आदेश सूचक</p>
       <ul class="terms">
         <li>... ठहर्छ ।</li>
         <li>... बदर हुने ठहर्छ ।</li>
@@ -326,14 +533,15 @@
     </div>
   </section>
 
+  <!-- § 2 -->
   <section class="section grid2" id="s2">
-    <div class="section-header">
-      <span class="section-num">§ २</span>
-      <span class="section-title">तथ्य तथा प्रमाण मूल्यांकन</span>
-      <span class="section-en">Fact &amp; Evidence Evaluation</span>
+    <div class="sec-head">
+      <span class="sec-num">§ २</span>
+      <span class="sec-title">तथ्य तथा प्रमाण मूल्यांकन</span>
+      <span class="sec-en">Fact &amp; Evidence Evaluation</span>
     </div>
     <div class="sub">
-      <p class="sub-title gold">प्रमाण पुष्टि सूचक</p>
+      <p class="sub-label gold"><span class="dot"></span>प्रमाण पुष्टि सूचक</p>
       <ul class="terms">
         <li>... प्रमाणित भएको पाइन्छ ।</li>
         <li>... पुष्टि हुन आएको छ ।</li>
@@ -355,7 +563,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title red">प्रमाण अपुष्टि सूचक</p>
+      <p class="sub-label red"><span class="dot"></span>प्रमाण अपुष्टि सूचक</p>
       <ul class="terms">
         <li>... सिद्ध हुन सकेन ।</li>
         <li>... प्रमाणित हुन सकेन ।</li>
@@ -366,21 +574,18 @@
     </div>
   </section>
 
+  <!-- § 3 -->
   <section class="section" id="s3">
-    <div class="section-header">
-      <span class="section-num">§ ३</span>
-      <span class="section-title">कानून व्याख्या सम्बन्धी</span>
-      <span class="section-en">Legal Interpretation</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ३</span>
+      <span class="sec-title">कानून व्याख्या सम्बन्धी</span>
+      <span class="sec-en">Legal Interpretation</span>
     </div>
     <div class="sub">
-      <p class="sub-title gold">कानूनको सन्दर्भमा</p>
+      <p class="sub-label gold"><span class="dot"></span>कानूनको सन्दर्भमा</p>
       <ul class="terms">
         <li>उक्त कानूनको रोहमा हेर्दा ...</li>
         <li>यस कानूनको सानिध्यतामा हेर्दा ...</li>
-        <li>यस कानूनको आलोकमा हेर्दा ...</li>
-        <li>यस कानूनको परिप्रेक्ष्यमा हेर्दा ...</li>
-        <li>यस कानूनलाई  मध्यनजर गर्दा ...</li>
-        <li>उक्त कानूनी व्यवस्थानुसार ....</li>
         <li>प्रचलित कानूनको मर्मअनुसार ...</li>
         <li>कानूनको भावनालाई दृष्टिगत गर्दा ...</li>
         <li>विद्यमान कानूनी व्यवस्थाअनुसार ...</li>
@@ -394,7 +599,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title teal">न्यायिक सिद्धान्त सम्बन्धी</p>
+      <p class="sub-label teal"><span class="dot"></span>न्यायिक सिद्धान्त सम्बन्धी</p>
       <ul class="terms">
         <li>स्थापित न्यायिक सिद्धान्तअनुसार ...</li>
         <li>न्याय प्रशासनको मूल मर्मअनुसार ...</li>
@@ -406,7 +611,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title gold">संवैधानिक व्याख्या सम्बन्धी</p>
+      <p class="sub-label gold"><span class="dot"></span>संवैधानिक व्याख्या सम्बन्धी</p>
       <ul class="terms">
         <li>... संवैधानिक विधिशास्त्र, संवैधानिक नैतिकता, संसदीय अभ्यास ... का दृष्टिले ...</li>
         <li>... संविधानको शब्द, मर्म र भावनाअनुकूल हुने देखिन्छ ।</li>
@@ -419,7 +624,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title red">क्षेत्राधिकार सम्बन्धी</p>
+      <p class="sub-label red"><span class="dot"></span>क्षेत्राधिकार सम्बन्धी</p>
       <ul class="terms">
         <li>... क्षेत्राधिकारविहीन र कानूनप्रतिकूल देखिन आएको ।</li>
         <li>... कानूनी रूपमा प्रभाव शून्य <em>(VOID)</em> हुन्छ ।</li>
@@ -429,14 +634,15 @@
     </div>
   </section>
 
+  <!-- § 4 -->
   <section class="section" id="s4">
-    <div class="section-header">
-      <span class="section-num">§ ४</span>
-      <span class="section-title">व्याख्या र अर्थ निर्धारण</span>
-      <span class="section-en">Interpretation &amp; Meaning</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ४</span>
+      <span class="sec-title">व्याख्या र अर्थ निर्धारण</span>
+      <span class="sec-en">Interpretation &amp; Meaning</span>
     </div>
     <div class="sub">
-      <p class="sub-title gold">सकारात्मक व्याख्या</p>
+      <p class="sub-label gold"><span class="dot"></span>सकारात्मक व्याख्या</p>
       <ul class="terms">
         <li>... भनी बुझ्नुपर्ने हुन्छ ।</li>
         <li>... भनी अर्थ लगाउनुपर्छ ।</li>
@@ -449,7 +655,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title red">नकारात्मक व्याख्या</p>
+      <p class="sub-label red"><span class="dot"></span>नकारात्मक व्याख्या</p>
       <ul class="terms">
         <li>... भनी अर्थ गर्न मिल्दैन ।</li>
         <li>... भनेर बुझ्नु उचित हुँदैन ।</li>
@@ -460,14 +666,15 @@
     </div>
   </section>
 
+  <!-- § 5 -->
   <section class="section" id="s5">
-    <div class="section-header">
-      <span class="section-num">§ ५</span>
-      <span class="section-title">तर्क मूल्यांकन</span>
-      <span class="section-en">Argument Evaluation</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ५</span>
+      <span class="sec-title">तर्क मूल्यांकन</span>
+      <span class="sec-en">Argument Evaluation</span>
     </div>
     <div class="sub">
-      <p class="sub-title gold">तर्क स्वीकृति</p>
+      <p class="sub-label gold"><span class="dot"></span>तर्क स्वीकृति</p>
       <ul class="terms">
         <li>... भन्ने तर्क मनासिब देखिन्छ ।</li>
         <li>... भन्ने विद्वान् अधिवक्ताको तर्क स्वीकार्य छ ।</li>
@@ -477,7 +684,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title red">तर्क अस्वीकृति</p>
+      <p class="sub-label red"><span class="dot"></span>तर्क अस्वीकृति</p>
       <ul class="terms">
         <li>... भन्ने तर्क स्वभाविक मान्न मिलेन ।</li>
         <li>... भन्ने विद्वान् कानून व्यवसायीको तर्कसँग सहमत हुन सकिएन ।</li>
@@ -491,7 +698,7 @@
       </ul>
     </div>
     <div class="sub">
-      <p class="sub-title grey">बहस / जिकिर उद्धरण</p>
+      <p class="sub-label grey"><span class="dot"></span>बहस / जिकिर उद्धरण</p>
       <ul class="terms">
         <li>... भन्ने जिकिर लिनुभएको छ ।</li>
         <li>... भन्ने बेहोराको बहस प्रस्तुत गर्नुभयो ।</li>
@@ -502,11 +709,12 @@
     </div>
   </section>
 
+  <!-- § 6 -->
   <section class="section" id="s6">
-    <div class="section-header">
-      <span class="section-num">§ ६</span>
-      <span class="section-title">निर्णयतर्फ प्रवेश सूचक</span>
-      <span class="section-en">Transition to Decision</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ६</span>
+      <span class="sec-title">निर्णयतर्फ प्रवेश सूचक</span>
+      <span class="sec-en">Transition to Decision</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -521,13 +729,14 @@
     </div>
   </section>
 
-  <p class="part-title">भाग २ — वाक्य जोड्ने तथा शृङ्खला मिलाउने शब्दावली</p>
+  <div class="part-heading"><span>भाग २ — वाक्य जोड्ने तथा शृङ्खला मिलाउने शब्दावली</span></div>
 
+  <!-- § 7 -->
   <section class="section grid2" id="s7">
-    <div class="section-header">
-      <span class="section-num">§ ७</span>
-      <span class="section-title">कारण / आधार जनाउने</span>
-      <span class="section-en">Causal Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ७</span>
+      <span class="sec-title">कारण / आधार जनाउने</span>
+      <span class="sec-en">Causal Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -542,11 +751,12 @@
     </div>
   </section>
 
+  <!-- § 8 -->
   <section class="section grid2" id="s8">
-    <div class="section-header">
-      <span class="section-num">§ ८</span>
-      <span class="section-title">निष्कर्ष / फलादेश जनाउने</span>
-      <span class="section-en">Conclusive Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ८</span>
+      <span class="sec-title">निष्कर्ष / फलादेश जनाउने</span>
+      <span class="sec-en">Conclusive Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -562,11 +772,12 @@
     </div>
   </section>
 
+  <!-- § 9 -->
   <section class="section" id="s9">
-    <div class="section-header">
-      <span class="section-num">§ ९</span>
-      <span class="section-title">विरोधाभास / अपवाद जनाउने</span>
-      <span class="section-en">Adversative Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ९</span>
+      <span class="sec-title">विरोधाभास / अपवाद जनाउने</span>
+      <span class="sec-en">Adversative Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -580,11 +791,12 @@
     </div>
   </section>
 
+  <!-- § 10 -->
   <section class="section grid2" id="s10">
-    <div class="section-header">
-      <span class="section-num">§ १०</span>
-      <span class="section-title">अनुक्रम / क्रम जनाउने</span>
-      <span class="section-en">Sequential Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १०</span>
+      <span class="sec-title">अनुक्रम / क्रम जनाउने</span>
+      <span class="sec-en">Sequential Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -599,11 +811,12 @@
     </div>
   </section>
 
+  <!-- § 11 -->
   <section class="section grid2" id="s11">
-    <div class="section-header">
-      <span class="section-num">§ ११</span>
-      <span class="section-title">थप / संयोजन जनाउने</span>
-      <span class="section-en">Additive Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ ११</span>
+      <span class="sec-title">थप / संयोजन जनाउने</span>
+      <span class="sec-en">Additive Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -616,11 +829,12 @@
     </div>
   </section>
 
+  <!-- § 12 -->
   <section class="section" id="s12">
-    <div class="section-header">
-      <span class="section-num">§ १२</span>
-      <span class="section-title">सन्दर्भ / विषय प्रवेश जनाउने</span>
-      <span class="section-en">Reference Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १२</span>
+      <span class="sec-title">सन्दर्भ / विषय प्रवेश जनाउने</span>
+      <span class="sec-en">Reference Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -639,11 +853,12 @@
     </div>
   </section>
 
+  <!-- § 13 -->
   <section class="section grid2" id="s13">
-    <div class="section-header">
-      <span class="section-num">§ १३</span>
-      <span class="section-title">शर्त / अवस्था जनाउने</span>
-      <span class="section-en">Conditional Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १३</span>
+      <span class="sec-title">शर्त / अवस्था जनाउने</span>
+      <span class="sec-en">Conditional Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -656,11 +871,12 @@
     </div>
   </section>
 
+  <!-- § 14 -->
   <section class="section grid2" id="s14">
-    <div class="section-header">
-      <span class="section-num">§ १४</span>
-      <span class="section-title">तुलना / समानान्तर जनाउने</span>
-      <span class="section-en">Comparative Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १४</span>
+      <span class="sec-title">तुलना / समानान्तर जनाउने</span>
+      <span class="sec-en">Comparative Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -673,11 +889,12 @@
     </div>
   </section>
 
-  <section class="section grid2" id="s15">
-    <div class="section-header">
-      <span class="section-num">§ १५</span>
-      <span class="section-title">विकल्प जनाउने</span>
-      <span class="section-en">Alternative Connectors</span>
+  <!-- § 15 -->
+  <section class="section" id="s15">
+    <div class="sec-head">
+      <span class="sec-num">§ १५</span>
+      <span class="sec-title">विकल्प जनाउने</span>
+      <span class="sec-en">Alternative Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -691,11 +908,12 @@
     </div>
   </section>
 
-  <section class="section" id="s16">
-    <div class="section-header">
-      <span class="section-num">§ १६</span>
-      <span class="section-title">स्पष्टीकरण / विस्तार जनाउने</span>
-      <span class="section-en">Elaborative Connectors</span>
+  <!-- § 16 -->
+  <section class="section grid2" id="s16">
+    <div class="sec-head">
+      <span class="sec-num">§ १६</span>
+      <span class="sec-title">स्पष्टीकरण / विस्तार जनाउने</span>
+      <span class="sec-en">Elaborative Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -709,11 +927,12 @@
     </div>
   </section>
 
+  <!-- § 17 -->
   <section class="section grid2" id="s17">
-    <div class="section-header">
-      <span class="section-num">§ १७</span>
-      <span class="section-title">पूर्वसन्दर्भ / उल्लेख जनाउने</span>
-      <span class="section-en">Back-reference Connectors</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १७</span>
+      <span class="sec-title">पूर्वसन्दर्भ / उल्लेख जनाउने</span>
+      <span class="sec-en">Back-reference Connectors</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -729,11 +948,12 @@
     </div>
   </section>
 
+  <!-- § 18 -->
   <section class="section grid2" id="s18">
-    <div class="section-header">
-      <span class="section-num">§ १८</span>
-      <span class="section-title">न्यायिक निरीक्षण / अवलोकन जनाउने</span>
-      <span class="section-en">Observation Markers</span>
+    <div class="sec-head">
+      <span class="sec-num">§ १८</span>
+      <span class="sec-title">न्यायिक निरीक्षण / अवलोकन जनाउने</span>
+      <span class="sec-en">Observation Markers</span>
     </div>
     <div class="sub">
       <ul class="terms">
@@ -753,237 +973,179 @@
 <button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="माथि">↑</button>
 
 <!-- ══════════════════════════════════════════════
-     ADVANCED SEARCH ENGINE
+     JAVASCRIPT
 ══════════════════════════════════════════════ -->
 <script>
 'use strict';
 
-/* ────────────────────────────────────────────
-   Nepali Normalizer
-──────────────────────────────────────────── */
-const NepaliNormalizer = {
-  vowelMap:   { 'ी':'ि', 'ू':'ु' },
-  sibilantMap:{ 'श':'स', 'ष':'स' },
-  nasalMap:   { 'ङ':'न', 'ण':'न', 'ञ':'न', 'ं':'न्' },
+/* ── Nepali Normalizer ── */
+const NN = {
+  vowelMap:   { 'ी':'ि','ू':'ु' },
+  sibilantMap:{ 'श':'स','ष':'स' },
+  nasalMap:   { 'ङ':'न','ण':'न','ञ':'न','ं':'न्' },
   vaBaMap:    { 'व':'ब' },
-
-  normalize(text) {
-    if (!text) return '';
-    let n = text.normalize('NFC').replace(/\u200D/g,'').replace(/\u200C/g,'');
-    for (const [f,t] of Object.entries(this.vowelMap))    n = n.split(f).join(t);
-    for (const [f,t] of Object.entries(this.sibilantMap)) n = n.split(f).join(t);
-    for (const [f,t] of Object.entries(this.nasalMap))    n = n.split(f).join(t);
-    for (const [f,t] of Object.entries(this.vaBaMap))     n = n.split(f).join(t);
+  normalize(t) {
+    if (!t) return '';
+    let n = t.normalize('NFC').replace(/\u200D/g,'').replace(/\u200C/g,'');
+    for (const [f,r] of Object.entries(this.vowelMap))    n = n.split(f).join(r);
+    for (const [f,r] of Object.entries(this.sibilantMap)) n = n.split(f).join(r);
+    for (const [f,r] of Object.entries(this.nasalMap))    n = n.split(f).join(r);
+    for (const [f,r] of Object.entries(this.vaBaMap))     n = n.split(f).join(r);
     return n;
   },
-
-  isDevanagari(text) { return /[\u0900-\u097F]/.test(text); },
-
-  mapToOriginal(normPos, original, normalized) {
+  mapToOriginal(normPos, orig, norm) {
     if (normPos <= 0) return 0;
-    if (normPos >= normalized.length) return original.length;
-    let origIdx = 0, normIdx = 0;
-    while (normIdx < normPos && origIdx < original.length) {
-      if (original[origIdx]==='\u200D' || original[origIdx]==='\u200C') { origIdx++; continue; }
-      origIdx++; normIdx++;
+    if (normPos >= norm.length) return orig.length;
+    let oi = 0, ni = 0;
+    while (ni < normPos && oi < orig.length) {
+      if (orig[oi]==='\u200D'||orig[oi]==='\u200C') { oi++; continue; }
+      oi++; ni++;
     }
-    while (origIdx < original.length &&
-           (original[origIdx]==='\u200D' || original[origIdx]==='\u200C')) origIdx++;
-    return origIdx;
+    while (oi < orig.length && (orig[oi]==='\u200D'||orig[oi]==='\u200C')) oi++;
+    return oi;
   }
 };
 
-/* ────────────────────────────────────────────
-   DOM
-──────────────────────────────────────────── */
-const inputEl   = document.getElementById('searchInput');
-const prevBtn   = document.getElementById('prevBtn');
-const nextBtn   = document.getElementById('nextBtn');
-const clearBtn  = document.getElementById('clearBtn');
-const countEl   = document.getElementById('searchCount');
-const topBtn    = document.getElementById('top-btn');
-const mainEl    = document.getElementById('mainContent');
+/* ── DOM ── */
+const $  = id => document.getElementById(id);
+const inputEl  = $('searchInput');
+const prevBtn  = $('prevBtn');
+const nextBtn  = $('nextBtn');
+const clearBtn = $('clearBtn');
+const countEl  = $('searchCount');
+const topBtn   = $('top-btn');
+const mainEl   = $('mainContent');
+const themeBtn = $('themeBtn');
+const tIcon    = $('tIcon');
+const tLabel   = $('tLabel');
 
-/* ────────────────────────────────────────────
-   State
-──────────────────────────────────────────── */
-let marks   = [];   // all <mark.hl> elements in DOM order
-let current = -1;   // active index
+/* ── State ── */
+let marks = [], cur = -1;
 
-/* ────────────────────────────────────────────
-   Clear all highlights & restore original text
-──────────────────────────────────────────── */
-function clearAll() {
-  document.querySelectorAll('mark.hl').forEach(m => {
-    m.replaceWith(document.createTextNode(m.textContent));
-  });
-  // merge adjacent text nodes
-  mainEl.normalize();
-  marks   = [];
-  current = -1;
-
-  // restore all items & sections
-  document.querySelectorAll('ul.terms li').forEach(li => li.classList.remove('no-match'));
-  document.querySelectorAll('.section').forEach(s  => s.classList.remove('fully-hidden'));
-}
-
-/* ────────────────────────────────────────────
-   Highlight one Text node; returns count
-──────────────────────────────────────────── */
-function highlightNode(textNode, normQ) {
-  const orig   = textNode.nodeValue;
-  const normOrig = NepaliNormalizer.normalize(orig).toLowerCase();
-
-  // find all positions
-  const hits = [];
-  let pos = 0;
-  while (true) {
-    const idx = normOrig.indexOf(normQ, pos);
-    if (idx === -1) break;
-    hits.push(idx);
-    pos = idx + normQ.length;
-  }
-  if (!hits.length) return 0;
-
-  const frag = document.createDocumentFragment();
-  let lastOrig = 0;
-
-  for (const normStart of hits) {
-    const normEnd  = normStart + normQ.length;
-    const origStart = NepaliNormalizer.mapToOriginal(normStart, orig, normOrig);
-    const origEnd   = NepaliNormalizer.mapToOriginal(normEnd,   orig, normOrig);
-
-    if (origStart > lastOrig)
-      frag.appendChild(document.createTextNode(orig.slice(lastOrig, origStart)));
-
-    const m = document.createElement('mark');
-    m.className  = 'hl';
-    m.textContent = orig.slice(origStart, origEnd);
-    frag.appendChild(m);
-    marks.push(m);
-    lastOrig = origEnd;
-  }
-  if (lastOrig < orig.length)
-    frag.appendChild(document.createTextNode(orig.slice(lastOrig)));
-
-  textNode.parentNode.replaceChild(frag, textNode);
-  return hits.length;
-}
-
-/* ────────────────────────────────────────────
-   Collect all leaf text nodes inside el,
-   skipping <mark>, <script>, <style>
-──────────────────────────────────────────── */
-function textNodes(el) {
-  const result = [];
-  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+/* ── Helpers ── */
+function textNodes(root) {
+  const list = [], w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
     acceptNode(n) {
       const p = n.parentNode.nodeName;
       if (p==='MARK'||p==='SCRIPT'||p==='STYLE') return NodeFilter.FILTER_REJECT;
       return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
     }
   });
-  let n;
-  while ((n = walker.nextNode())) result.push(n);
-  return result;
+  let n; while ((n = w.nextNode())) list.push(n);
+  return list;
 }
 
-/* ────────────────────────────────────────────
-   Main search
-──────────────────────────────────────────── */
+function highlightNode(tn, normQ) {
+  const orig = tn.nodeValue;
+  const norm = NN.normalize(orig).toLowerCase();
+  const hits = [];
+  let pos = 0;
+  while (true) {
+    const i = norm.indexOf(normQ, pos);
+    if (i === -1) break;
+    hits.push(i); pos = i + normQ.length;
+  }
+  if (!hits.length) return;
+  const frag = document.createDocumentFragment();
+  let last = 0;
+  for (const ns of hits) {
+    const ne = ns + normQ.length;
+    const os = NN.mapToOriginal(ns, orig, norm);
+    const oe = NN.mapToOriginal(ne, orig, norm);
+    if (os > last) frag.appendChild(document.createTextNode(orig.slice(last, os)));
+    const m = document.createElement('mark');
+    m.className = 'hl'; m.textContent = orig.slice(os, oe);
+    frag.appendChild(m); marks.push(m); last = oe;
+  }
+  if (last < orig.length) frag.appendChild(document.createTextNode(orig.slice(last)));
+  tn.parentNode.replaceChild(frag, tn);
+}
+
+/* ── Clear ── */
+function clearAll() {
+  document.querySelectorAll('mark.hl').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+  mainEl.normalize();
+  marks = []; cur = -1;
+  document.querySelectorAll('ul.terms li').forEach(li => li.classList.remove('no-match'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('fully-hidden'));
+}
+
+/* ── Search ── */
 function runSearch(query) {
   clearAll();
-
   const q = query.trim();
-  clearBtn.style.display = q ? '' : 'none';
-
+  clearBtn.style.display = q ? 'flex' : 'none';
   if (!q) { updateUI(); return; }
 
-  const normQ = NepaliNormalizer.normalize(q).toLowerCase();
+  const normQ = NN.normalize(q).toLowerCase();
 
-  // ── per-<li> show/hide ──
   document.querySelectorAll('ul.terms li').forEach(li => {
-    const normText = NepaliNormalizer.normalize(li.textContent).toLowerCase();
-    if (!normText.includes(normQ)) li.classList.add('no-match');
+    if (!NN.normalize(li.textContent).toLowerCase().includes(normQ))
+      li.classList.add('no-match');
   });
 
-  // ── highlight (walk text nodes of entire main) ──
-  // We must snapshot nodes before we insert <mark> elements
-  const nodes = textNodes(mainEl);
-  nodes.forEach(n => highlightNode(n, normQ));
+  textNodes(mainEl).forEach(n => highlightNode(n, normQ));
 
-  // ── hide sections where every <li> is hidden ──
   document.querySelectorAll('.section').forEach(sec => {
     const lis = sec.querySelectorAll('ul.terms li');
-    if (!lis.length) return;
-    if ([...lis].every(li => li.classList.contains('no-match')))
+    if (lis.length && [...lis].every(li => li.classList.contains('no-match')))
       sec.classList.add('fully-hidden');
   });
 
-  // activate first match
-  if (marks.length) { current = 0; activateMark(0, false); }
+  if (marks.length) { cur = 0; activate(0, false); }
   updateUI();
 }
 
-/* ────────────────────────────────────────────
-   Navigation
-──────────────────────────────────────────── */
-function activateMark(idx, smooth=true) {
+/* ── Navigation ── */
+function activate(idx, smooth=true) {
   if (!marks.length) return;
-  marks[current]?.classList.remove('active');
-  current = (idx + marks.length) % marks.length;
-  marks[current].classList.add('active');
-  marks[current].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+  marks[cur]?.classList.remove('active');
+  cur = (idx + marks.length) % marks.length;
+  marks[cur].classList.add('active');
+  marks[cur].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
   updateUI();
 }
+const goNext = () => marks.length && activate(cur + 1);
+const goPrev = () => marks.length && activate(cur - 1);
 
-function goNext() { if (marks.length) activateMark(current + 1); }
-function goPrev() { if (marks.length) activateMark(current - 1); }
-
-/* ────────────────────────────────────────────
-   UI labels
-──────────────────────────────────────────── */
+/* ── UI ── */
 function updateUI() {
-  const total = marks.length;
-  const hasQ  = inputEl.value.trim().length > 0;
-
-  prevBtn.disabled = !total;
-  nextBtn.disabled = !total;
-
-  if (!hasQ) {
-    countEl.textContent = '';
-    countEl.className   = 'search-count empty';
-    return;
-  }
-  if (!total) {
-    countEl.textContent = 'फेला परेन';
-    countEl.className   = 'search-count none';
-    return;
-  }
-  countEl.textContent = `${current + 1} / ${total}`;
-  countEl.className   = 'search-count';
+  const total = marks.length, hasQ = inputEl.value.trim().length > 0;
+  prevBtn.disabled = nextBtn.disabled = !total;
+  if (!hasQ) { countEl.textContent=''; countEl.className='search-count empty'; return; }
+  if (!total) { countEl.textContent='फेला परेन'; countEl.className='search-count none'; return; }
+  countEl.textContent = `${cur+1} / ${total}`;
+  countEl.className = 'search-count';
 }
 
-/* ────────────────────────────────────────────
-   Events
-──────────────────────────────────────────── */
-let debounce;
-inputEl.addEventListener('input', () => {
-  clearTimeout(debounce);
-  debounce = setTimeout(() => runSearch(inputEl.value), 150);
-});
-
+/* ── Events ── */
+let dbnc;
+inputEl.addEventListener('input', () => { clearTimeout(dbnc); dbnc = setTimeout(() => runSearch(inputEl.value), 150); });
 inputEl.addEventListener('keydown', e => {
-  if (e.key === 'Enter')  { e.preventDefault(); e.shiftKey ? goPrev() : goNext(); }
-  if (e.key === 'Escape') { inputEl.value = ''; runSearch(''); inputEl.blur(); }
+  if (e.key==='Enter')  { e.preventDefault(); e.shiftKey ? goPrev() : goNext(); }
+  if (e.key==='Escape') { inputEl.value=''; runSearch(''); inputEl.blur(); }
 });
-
 prevBtn .addEventListener('click', goPrev);
 nextBtn .addEventListener('click', goNext);
 clearBtn.addEventListener('click', () => { inputEl.value=''; runSearch(''); inputEl.focus(); });
 
-/* scroll-to-top */
 window.addEventListener('scroll', () => topBtn.classList.toggle('show', scrollY > 400));
+
+/* ── Theme ── */
+function applyTheme(mode) {
+  const light = mode === 'light';
+  document.documentElement.classList.toggle('light', light);
+  tIcon.textContent  = light ? '☀️' : '🌙';
+  tLabel.textContent = light ? 'अँध्यारो' : 'उज्यालो';
+  try { localStorage.setItem('shabdavali-theme', mode); } catch(e){}
+}
+themeBtn.addEventListener('click', () => {
+  applyTheme(document.documentElement.classList.contains('light') ? 'dark' : 'light');
+});
+try {
+  const s = localStorage.getItem('shabdavali-theme');
+  applyTheme(s || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+} catch(e) { applyTheme('dark'); }
 </script>
 </body>
 </html>
